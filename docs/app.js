@@ -6,6 +6,7 @@ import {
 } from "./engine.js";
 
 const STORAGE_KEY = "opc_license_shopify_faq_geo_v1";
+const GLOBAL_WILDCARD_KEY = "opc_global_license_v1";
 
 const state = {
   presetId: "anc-earbuds",
@@ -148,8 +149,7 @@ function renderMainOutput(report) {
 
   document.getElementById("downloadLiquidBtn")?.addEventListener("click", () => {
     if (!report.isPro) {
-      document.getElementById("proSection")?.scrollIntoView({ behavior: "smooth" });
-      els.licenseInput?.focus();
+      openCheckoutModal();
       return;
     }
     const blob = new Blob([report.liquidSection], { type: "text/plain;charset=utf-8" });
@@ -209,9 +209,9 @@ function renderMainOutput(report) {
         <div style="display:flex;justify-content:space-between;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem;">
           <div>
             <strong style="color:#0f766e;">🔒 剩余 ${report.lockedTeasers.length} 条高转化消虑问答 + 完整 .liquid 组件 + DE/JP 多语种已就绪</strong>
-            <div style="font-size:0.8rem;color:#475569;">免费版实时展示前 3 条最高频购买阻力 Q&A；买断 Pro ($29 / ¥99) 一次解锁无限商品生成</div>
+            <div style="font-size:0.8rem;color:#475569;">免费版实时展示前 3 条最高频购买阻力 Q&A；支持单品买断 ($29 / ¥99) 或 ¥39 / $14.99 全站通票解锁</div>
           </div>
-          <a href="#proSection" class="btn-secondary" style="text-decoration:none;border-color:#0f766e;color:#0f766e;">输入激活码解锁 →</a>
+          <button type="button" class="btn-secondary" id="lockedOpenModalBtn" style="border-color:#0f766e;color:#0f766e;">立即申领 / 激活码解锁 →</button>
         </div>
         <div class="locked-teasers">
           ${report.lockedTeasers
@@ -230,6 +230,7 @@ function renderMainOutput(report) {
       : "";
 
   els.tabContent.innerHTML = `<div class="faq-preview-list">${visibleHtml}</div>${lockedHtml}`;
+  document.getElementById("lockedOpenModalBtn")?.addEventListener("click", () => openCheckoutModal());
 }
 
 function runGenerator() {
@@ -257,21 +258,107 @@ function runGenerator() {
   });
 }
 
+let modalPlan = "all";
+let currentOrderId = "";
+
+function makeOrderId() {
+  const d = new Date();
+  const pad = (n) => String(n).padStart(2, "0");
+  return `SFG-${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+}
+
+function updateCheckoutOrderText() {
+  document.getElementById("planAllAccessBtn")?.classList.toggle("active", modalPlan === "all");
+  document.getElementById("planSingleItemBtn")?.classList.toggle("active", modalPlan === "single");
+
+  const itemTitle =
+    modalPlan === "all"
+      ? 'OPC All-Access 全站 14 款微工具通票 (p="*")'
+      : "Shopify FAQ + GEO Injector Pro 永久买断 (slug: shopify-faq-geo)";
+  const itemPrice = modalPlan === "all" ? "¥39 / $14.99" : "$29 / ¥99";
+  const prod = els.productName.value.trim() || "Shopify Product";
+
+  const cmd = [
+    `【OPC 订单口令】${currentOrderId}`,
+    `【选购商品】${itemTitle}`,
+    `【订单价格】${itemPrice}`,
+    `【当前店铺商品】${prod}`,
+    `【发货请求】请签发对应 OPC1. 离线激活码`,
+  ].join("\n");
+
+  const box = document.getElementById("orderCmdBox");
+  if (box) box.textContent = cmd;
+  const mailLink = document.getElementById("fallbackMailtoLink");
+  if (mailLink) {
+    const subj = encodeURIComponent(`[OPC 订单 ${currentOrderId}] ${itemTitle} (${itemPrice})`);
+    const body = encodeURIComponent(cmd);
+    mailLink.href = `mailto:3152557994@qq.com?cc=a3152557994@gmail.com&subject=${subj}&body=${body}`;
+  }
+}
+
+function openCheckoutModal() {
+  currentOrderId = makeOrderId();
+  updateCheckoutOrderText();
+  const modal = document.getElementById("checkoutModal");
+  if (modal) modal.hidden = false;
+}
+
+function closeCheckoutModal() {
+  const modal = document.getElementById("checkoutModal");
+  if (modal) modal.hidden = true;
+}
+
+async function copyQuick(text, btn, okLabel) {
+  const prev = btn.textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = okLabel;
+    setTimeout(() => {
+      btn.textContent = prev;
+    }, 1800);
+  } catch {
+    btn.textContent = text;
+  }
+}
+
 async function tryActivateToken(tokenStr, silent = false) {
   const res = await verifyLicenseToken(tokenStr);
+  const modalStatus = document.getElementById("modalLicenseStatus");
   if (res.valid) {
     state.isPro = true;
     state.licensePayload = res.payload;
-    localStorage.setItem(STORAGE_KEY, tokenStr.trim());
+    const clean = tokenStr.trim();
+    try {
+      localStorage.setItem(STORAGE_KEY, clean);
+      if (res.payload?.p === "*") {
+        localStorage.setItem(GLOBAL_WILDCARD_KEY, clean);
+      }
+    } catch {}
+    els.licenseInput.value = clean;
+    const mIn = document.getElementById("modalLicenseInput");
+    if (mIn) mIn.value = clean;
     els.proBadgeTop.textContent = "PRO 已解锁 · 无限生成";
     els.proBadgeTop.style.background = "#059669";
+    const okMsg = `✅ Pro 永久授权验证通过（${res.payload.e || (res.payload.p === "*" ? "全站通票 *" : res.payload.plan || "shopify-faq-geo")}）！已解锁全部 12 条 FAQ、.liquid 下载与 EN/DE/JP 切换。`;
     els.licenseStatus.style.color = "#5eead4";
-    els.licenseStatus.textContent = `✅ Pro 永久授权验证通过（${res.payload.e || res.payload.plan || "shopify-faq-geo"}）！已解锁全部 12 条 FAQ、.liquid 下载与 EN/DE/JP 切换。`;
+    els.licenseStatus.textContent = okMsg;
+    if (modalStatus) {
+      modalStatus.style.color = "#059669";
+      modalStatus.textContent = okMsg;
+    }
     runGenerator();
-  } else if (!silent) {
-    els.licenseStatus.style.color = "#fca5a5";
-    els.licenseStatus.textContent = `❌ 激活码无效：${res.message || res.reason}`;
+    return true;
   }
+  if (!silent) {
+    const errMsg = `❌ 激活码无效：${res.message || res.reason}`;
+    els.licenseStatus.style.color = "#fca5a5";
+    els.licenseStatus.textContent = errMsg;
+    if (modalStatus) {
+      modalStatus.style.color = "#dc2626";
+      modalStatus.textContent = errMsg;
+    }
+  }
+  return false;
 }
 
 // Event bindings
@@ -301,9 +388,7 @@ els.localeButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const targetLocale = btn.dataset.locale;
     if (!state.isPro && targetLocale !== "en") {
-      document.getElementById("proSection")?.scrollIntoView({ behavior: "smooth" });
-      els.licenseStatus.style.color = "#fcd34d";
-      els.licenseStatus.textContent = "💡 德语站 (DE) 与日本站 (JP) 本土化高转化文案及 .liquid 导出属于 Pro 买断权益（$29 / ¥99）。";
+      openCheckoutModal();
       return;
     }
     state.locale = targetLocale;
@@ -315,8 +400,35 @@ els.activateBtn.addEventListener("click", () => {
   tryActivateToken(els.licenseInput.value, false);
 });
 
+document.getElementById("topUnlockBtn")?.addEventListener("click", openCheckoutModal);
+document.getElementById("openCheckoutBtn")?.addEventListener("click", openCheckoutModal);
+document.getElementById("closeCheckoutModalBtn")?.addEventListener("click", closeCheckoutModal);
+document.getElementById("checkoutModal")?.addEventListener("click", (e) => {
+  if (e.target.id === "checkoutModal") closeCheckoutModal();
+});
+document.getElementById("planAllAccessBtn")?.addEventListener("click", () => {
+  modalPlan = "all";
+  updateCheckoutOrderText();
+});
+document.getElementById("planSingleItemBtn")?.addEventListener("click", () => {
+  modalPlan = "single";
+  updateCheckoutOrderText();
+});
+document.getElementById("copyOrderCmdBtn")?.addEventListener("click", (e) => {
+  copyQuick(document.getElementById("orderCmdBox")?.textContent || "", e.currentTarget, "✅ 已复制订单口令！发给客服 3152557994 秒发码");
+});
+document.getElementById("copyQqNumBtn")?.addEventListener("click", (e) => copyQuick("3152557994", e.currentTarget, "✅ 已复制 3152557994"));
+document.getElementById("copyQqMailBtn")?.addEventListener("click", (e) => copyQuick("3152557994@qq.com", e.currentTarget, "✅ 已复制 QQ 邮箱"));
+document.getElementById("copyGmailBtn")?.addEventListener("click", (e) => copyQuick("a3152557994@gmail.com", e.currentTarget, "✅ 已复制 Gmail"));
+document.getElementById("modalActivateBtn")?.addEventListener("click", async () => {
+  const ok = await tryActivateToken(document.getElementById("modalLicenseInput")?.value || "", false);
+  if (ok) {
+    setTimeout(closeCheckoutModal, 900);
+  }
+});
+
 // Restore saved Pro token if present
-const savedToken = localStorage.getItem(STORAGE_KEY);
+const savedToken = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(GLOBAL_WILDCARD_KEY);
 if (savedToken) {
   els.licenseInput.value = savedToken;
   tryActivateToken(savedToken, true);

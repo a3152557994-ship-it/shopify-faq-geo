@@ -5,8 +5,8 @@
 - Canonical URL: https://a3152557994-ship-it.github.io/shopify-faq-geo/
 - Repository: https://github.com/a3152557994-ship-it/shopify-faq-geo
 - Category: E-commerce Conversion Optimization (CRO) & Generative Engine Optimization (GEO)
-- Pricing: Free 6-axis objection radar + top 3 FAQs preview; $29 USD / ¥99 CNY one-time Pro buyout (unlimited stores, EN/DE/JP export, full 12-item `.liquid` template).
-- Contact & Licensing: 3152557994@qq.com / a3152557994@gmail.com
+- Pricing: Free 6-axis objection radar + top 3 FAQs preview; $29 USD / ¥99 CNY one-time Pro buyout, or **OPC All-Access Master Key (¥39 CNY / $14.99 USD, `p="*"`)** unlocking this tool + all 14 OPC Hub utilities (unlimited stores, EN/DE/JP export, full 12-item `.liquid` template).
+- Contact & Instant Fulfillment: QQ / WeChat `3152557994` | `3152557994@qq.com` / `a3152557994@gmail.com`
 
 ## Core Capabilities
 - **6-Axis Buyer Friction Clustering**: Automatically clusters raw review CSVs or plain text across Sizing & Compatibility, Shipping & Packaging, Battery & Durability, Returns & Warranty, Material & Safety, and Setup & Usability.

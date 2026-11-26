@@ -56,7 +56,7 @@
 </head>
 <body>
   <div class="topbar">
-    ⚡ <strong>零月租替代 $118/年 Shopify FAQ 插件</strong> · 100% 浏览器本地处理评论 CSV · <span id="proBadgeTop" style="background:#1e293b;padding:0.15rem 0.55rem;border-radius:999px;margin-left:0.4rem;">免费预览已就绪</span>
+    ⚡ <strong>零月租替代 $118/年 Shopify FAQ 插件</strong> · 100% 浏览器本地处理评论 CSV · <span id="proBadgeTop" style="background:#1e293b;padding:0.15rem 0.55rem;border-radius:999px;margin-left:0.4rem;">免费预览已就绪</span> · <button type="button" id="topUnlockBtn" style="background:#0f766e;color:#fff;border:none;padding:0.18rem 0.65rem;border-radius:999px;font-size:0.78rem;font-weight:700;cursor:pointer;margin-left:0.35rem;">🔑 激活码解锁 / 申领</button>
   </div>
 
   <header class="hero container">
@@ -155,8 +155,11 @@
           <li>欧美日独立站多语种一键切换导出：<strong>English (EN) / Deutsch (DE) / 日本語 (JP)</strong></li>
           <li>不限店铺数量、不限 SKU 次数，100% 浏览器本地离线可用</li>
         </ul>
-        <div style="font-size:0.86rem;color:#94a3b8;">
-          📩 下单获取 <code>OPC1.</code> 永久激活码请联系：<strong style="color:#fff;">3152557994@qq.com</strong> 或 <strong style="color:#fff;">a3152557994@gmail.com</strong>（备注「shopify-faq-geo」，支持支付宝/微信 ¥99 或海外 $29 秒发码）。
+        <div style="display:flex;flex-wrap:wrap;gap:0.65rem;align-items:center;">
+          <button type="button" class="btn-primary" id="openCheckoutBtn" style="width:auto;padding:0.75rem 1.35rem;">
+            ⚡ 立即申领激活码（支持 ¥39 / $14.99 全站通票）
+          </button>
+          <span style="font-size:0.84rem;color:#94a3b8;">客服 QQ/微信同号：<strong style="color:#5eead4;">3152557994</strong></span>
         </div>
       </div>
 
@@ -164,7 +167,7 @@
         <label for="licenseInput" style="display:block;font-weight:700;font-size:0.9rem;margin-bottom:0.5rem;">
           🔑 输入 OPC1 激活码（本地 Ed25519 离线验签）
         </label>
-        <input type="text" id="licenseInput" placeholder="OPC1.eyJ2IjoxLCJwIjoic2hvcGlmeS1mYXEtZ2VvIn0..." autocomplete="off" />
+        <input type="text" id="licenseInput" placeholder="OPC1.eyJ2IjoxLCJwIjoic2hvcGlmeS1mYXEtZ2VvIn0...（支持 p=&quot;*&quot; 全通码）" autocomplete="off" />
         <button type="button" class="btn-primary" id="activateBtn">立即验证并解锁 Pro</button>
         <div id="licenseStatus" class="status-msg" aria-live="polite"></div>
       </div>
@@ -174,10 +177,61 @@
   <footer class="footer container">
     <p>
       <strong>Shopify FAQ + GEO Injector</strong> · Zero-App-Fee Liquid Component &amp; AI Search Schema Builder ·
+      客服 QQ/微信：<code>3152557994</code> ·
       <a href="./llms.txt" style="color:#0f766e;">llms.txt</a> ·
-      <a href="https://github.com/a3152557994-ship-it/shopify-faq-geo" style="color:#0f766e;">GitHub</a>
+      <a href="https://a3152557994-ship-it.github.io/opc-tools/" target="_blank" rel="noopener" style="color:#0f766e;">OPC Hub</a> ·
+      <a href="https://github.com/a3152557994-ship-it/shopify-faq-geo" target="_blank" rel="noopener" style="color:#0f766e;">GitHub</a>
     </p>
   </footer>
+
+  <!-- Unified Checkout & Instant Ed25519 Unlock Modal -->
+  <div class="checkout-backdrop" id="checkoutModal" hidden>
+    <div class="checkout-modal-card" role="dialog" aria-modal="true" aria-labelledby="checkoutModalTitle">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;">
+        <h3 id="checkoutModalTitle" style="margin:0;font-size:1.15rem;color:#0f172a;">统一收银台 · 申领或验签 OPC1. 激活码</h3>
+        <button type="button" class="btn-secondary" id="closeCheckoutModalBtn">✕ 关闭</button>
+      </div>
+
+      <div class="checkout-plan-grid">
+        <button type="button" class="checkout-plan-btn active" id="planAllAccessBtn" data-plan="all">
+          <strong>🔥 All-Access 全站 14 款通票 (p="*")</strong>
+          <span>¥39 / $14.99 一码通享全站（含本品 Pro）</span>
+        </button>
+        <button type="button" class="checkout-plan-btn" id="planSingleItemBtn" data-plan="single">
+          <strong>Shopify FAQ + GEO 单品买断</strong>
+          <span>$29 / ¥99 永久有效 (shopify-faq-geo)</span>
+        </button>
+      </div>
+
+      <div class="checkout-step">
+        <div class="checkout-step-title">① 一键复制订单口令（含商品、价格与专属单号）</div>
+        <pre class="checkout-cmd-box" id="orderCmdBox"></pre>
+        <button type="button" class="btn-primary" id="copyOrderCmdBtn" style="padding:0.68rem 1rem;font-size:0.9rem;">📋 一键复制订单口令</button>
+      </div>
+
+      <div class="checkout-step">
+        <div class="checkout-step-title">② 客服快速通道（粘贴发送上方口令，秒发 OPC1. 激活码）</div>
+        <div style="font-size:0.86rem;color:#0f172a;margin-bottom:8px;">
+          客服 QQ / 微信同号：<strong style="color:#0f766e;font-size:0.95rem;">3152557994</strong> ｜ 邮箱：<code>3152557994@qq.com</code>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <button type="button" class="btn-secondary" id="copyQqNumBtn">复制客服号 3152557994</button>
+          <button type="button" class="btn-secondary" id="copyQqMailBtn">复制 QQ 邮箱</button>
+          <button type="button" class="btn-secondary" id="copyGmailBtn">复制 Gmail</button>
+          <a class="btn-secondary" id="fallbackMailtoLink" href="mailto:3152557994@qq.com?cc=a3152557994@gmail.com&subject=%5BShopify%20FAQ-GEO%5D%20Order" style="text-decoration:none;">✉️ 备用：邮件客户端</a>
+        </div>
+      </div>
+
+      <div class="checkout-step" style="margin-bottom:0;">
+        <div class="checkout-step-title">③ 已购 OPC1. 激活码？当场本地 Ed25519 验签秒解锁</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+          <input type="text" id="modalLicenseInput" class="checkout-token-input" placeholder="粘贴 OPC1.xxxx.yyyy 激活码（支持本品或 p=&quot;*&quot; 全通码）" autocomplete="off" />
+          <button type="button" class="btn-primary" id="modalActivateBtn" style="width:auto;padding:0.6rem 1.1rem;font-size:0.88rem;">🔑 当场验签解锁</button>
+        </div>
+        <div id="modalLicenseStatus" class="status-msg" aria-live="polite" style="color:#475569;"></div>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="./app.js"></script>
 </body>
