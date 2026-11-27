@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shopify FAQ + GEO Injector — 买家差评疑虑自动转高转化商品 FAQ 与 Liquid 组件</title>
-  <meta name="description" content="专为 Shopify 与跨境独立站卖家打造：输入原始差评或 CSV，按 6 大购买阻力自动聚类买家顾虑，一键生成地道高转化 FAQ、零报错 FAQPage JSON-LD Schema 与 sections/faq-geo.liquid 主题组件。" />
+  <title>Shopify FAQ + GEO Injector — 买家差评疑虑自动转高转化商品 FAQ 与 Liquid 组件（100% 免费开放）</title>
+  <meta name="description" content="100% 免费开放，专为 Shopify 与跨境独立站卖家打造：输入原始差评或 CSV，按 6 大购买阻力自动聚类买家顾虑，免激活码一键生成全部 12 条高转化 FAQ（EN/DE/JP）、零报错 FAQPage JSON-LD Schema 与 sections/faq-geo.liquid 主题组件。" />
   <link rel="canonical" href="https://a3152557994-ship-it.github.io/shopify-faq-geo/" />
-  <meta property="og:title" content="Shopify FAQ + GEO Injector — 差评疑虑秒变高转化 FAQ & Liquid 组件" />
-  <meta property="og:description" content="零月租替代 $9.99/月 Shopify FAQ 插件：6 大阻力雷达 + FAQPage JSON-LD + OS 2.0 .liquid 手风琴一键注入。" />
+  <meta property="og:title" content="Shopify FAQ + GEO Injector — 差评疑虑秒变高转化 FAQ & Liquid 组件（100% 免费）" />
+  <meta property="og:description" content="$0 免费替代 $9.99/月 Shopify FAQ 插件：6 大阻力雷达 + 12 条 EN/DE/JP 问答 + FAQPage JSON-LD + OS 2.0 .liquid 手风琴一键免费导出。" />
   <meta property="og:url" content="https://a3152557994-ship-it.github.io/shopify-faq-geo/" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="./style.css" />
@@ -21,10 +21,10 @@
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
         "url": "https://a3152557994-ship-it.github.io/shopify-faq-geo/",
-        "description": "Convert negative Amazon/Shopify buyer reviews into high-converting product FAQs, Schema.org FAQPage JSON-LD, and Shopify OS 2.0 sections/faq-geo.liquid components.",
+        "description": "100% free tool to convert negative Amazon/Shopify buyer reviews into 12 high-converting product FAQs (EN/DE/JP), Schema.org FAQPage JSON-LD, and Shopify OS 2.0 sections/faq-geo.liquid components.",
         "offers": {
           "@type": "Offer",
-          "price": "29.00",
+          "price": "0.00",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock"
         }
@@ -34,10 +34,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Does this replace monthly paid Shopify FAQ & Schema apps?",
+            "name": "Does this replace monthly paid Shopify FAQ & Schema apps completely free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. It generates a standalone Shopify Online Store 2.0 section file (sections/faq-geo.liquid) with built-in Schema.org FAQPage JSON-LD—zero monthly subscription fees and zero external JavaScript slowdown."
+              "text": "Yes. It generates a standalone Shopify Online Store 2.0 section file (sections/faq-geo.liquid) with 12 high-converting Q&As in EN/DE/JP and built-in Schema.org FAQPage JSON-LD—100% free with zero monthly subscription fees and zero external JavaScript slowdown."
             }
           },
           {
@@ -45,7 +45,7 @@
             "name": "Are my store reviews uploaded to an external server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Review clustering, FAQ generation, Liquid synthesis, and Ed25519 license verification run 100% locally in your browser."
+              "text": "No. Review clustering, FAQ generation, and Liquid synthesis run 100% locally in your browser."
             }
           }
         ]
@@ -55,15 +55,19 @@
   </script>
 </head>
 <body>
+  <div style="background:linear-gradient(90deg,#064e3b,#0f172a);border-bottom:1px solid #10b981;padding:8px 14px;text-align:center;font-size:13px;color:#f8fafc;">
+    🎉 <strong>全站 18 款效率与防封微工具 100% 免费开放：</strong>免注册·免激活码·纯本地隐私 👉 <a href="https://a3152557994-ship-it.github.io/opc-tools/" style="color:#6ee7b7;font-weight:700;text-decoration:underline;">前往 OPC 免费总站 →</a>
+  </div>
+
   <div class="topbar">
-    ⚡ <strong>零月租替代 $118/年 Shopify FAQ 插件</strong> · 100% 浏览器本地处理评论 CSV · <span id="proBadgeTop" style="background:#1e293b;padding:0.15rem 0.55rem;border-radius:999px;margin-left:0.4rem;">免费预览已就绪</span> · <button type="button" id="topUnlockBtn" style="background:#0f766e;color:#fff;border:none;padding:0.18rem 0.65rem;border-radius:999px;font-size:0.78rem;font-weight:700;cursor:pointer;margin-left:0.35rem;">🔑 激活码解锁 / 申领</button>
+    ⚡ <strong>$0 免费替代 $118/年 Shopify FAQ 插件</strong> · 100% 浏览器本地处理评论 CSV · <span id="proBadgeTop" style="background:#059669;padding:0.15rem 0.55rem;border-radius:999px;margin-left:0.4rem;">100% 免费解锁 · 12 条 EN/DE/JP 全开</span> · <a href="#proSection" style="background:#0f766e;color:#fff;padding:0.18rem 0.65rem;border-radius:999px;font-size:0.78rem;font-weight:700;text-decoration:none;margin-left:0.35rem;">🏢 独立站代部署 / 离线包</a>
   </div>
 
   <header class="hero container">
-    <div class="eyebrow">🛍️ Shopify OS 2.0 &amp; ChatGPT Shopping GEO 专用</div>
+    <div class="eyebrow">🛍️ Shopify OS 2.0 &amp; ChatGPT Shopping GEO 专用 · 100% 免费无锁</div>
     <h1>把买家 1–3 星差评疑虑，秒变高转化商品页 FAQ + <code>faq-geo.liquid</code></h1>
     <p class="lead">
-      粘贴竞品 Amazon / 独立站差评或上传 CSV，自动按<strong>「尺码/兼容、物流/包装、续航/耐用、退换质保、材质安全、使用门槛」</strong>6 大购买阻力聚类频次，生成地道消除顾虑 Q&amp;A、零报错 <code>FAQPage</code> JSON-LD 与可直接粘进 Shopify 后台的手风琴主题组件。
+      粘贴竞品 Amazon / 独立站差评或上传 CSV，自动按<strong>「尺码/兼容、物流/包装、续航/耐用、退换质保、材质安全、使用门槛」</strong>6 大购买阻力聚类频次，免费一键导出完整 12 条消除顾虑 Q&amp;A（EN/DE/JP）、零报错 <code>FAQPage</code> JSON-LD 与 Shopify 手风琴主题组件。
     </p>
 
     <div class="preset-bar" aria-label="内置跨境爆品评论样本">
@@ -108,7 +112,7 @@
         </div>
 
         <button type="button" class="btn-primary" id="generateBtn">
-          ⚡ 立即聚类购买阻力并生成 Shopify FAQ + Liquid
+          ⚡ 免费生成完整 12 条 Shopify FAQ + Liquid 组件
         </button>
       </section>
 
@@ -131,8 +135,8 @@
 
           <div class="locale-pills" aria-label="导出语种切换">
             <button type="button" class="locale-btn active" data-locale="en">EN</button>
-            <button type="button" class="locale-btn" data-locale="de">DE 🔒</button>
-            <button type="button" class="locale-btn" data-locale="ja">JP 🔒</button>
+            <button type="button" class="locale-btn" data-locale="de">DE</button>
+            <button type="button" class="locale-btn" data-locale="ja">JP</button>
           </div>
         </div>
 
@@ -141,97 +145,59 @@
       </section>
     </div>
 
-    <!-- Pro Buyout & Local WebCrypto Activation -->
-    <section class="pro-banner" id="proSection">
+    <!-- 100% Free Open Manifesto & 3-Way Backend Monetization -->
+    <section class="pro-banner" id="proSection" style="grid-template-columns:1fr;">
       <div>
-        <div class="eyebrow" style="background:rgba(94,234,212,0.16);color:#5eead4;">💎 一次买断 · 永久拒绝 Shopify 插件月租</div>
-        <h2 style="margin:0 0 0.6rem;font-size:1.55rem;">解锁 Shopify FAQ + GEO Pro 买断版（$29 / ¥99）</h2>
-        <p style="margin:0 0 0.9rem;color:#cbd5e1;font-size:0.94rem;">
-          免费版生成疑虑雷达与前 3 条高转化问答预览；升级 Pro 立即解锁：
+        <div class="eyebrow" style="background:rgba(94,234,212,0.16);color:#5eead4;">🎉 100% 免费开放 · 免注册 · 免激活码 · 纯本地隐私</div>
+        <h2 style="margin:0 0 0.6rem;font-size:1.55rem;">全站 18 款效率与防封微工具 100% 免费开放</h2>
+        <p style="margin:0 0 1.1rem;color:#cbd5e1;font-size:0.94rem;">
+          本站完整 12 条高转化消虑 Q&amp;A、<code>sections/faq-geo.liquid</code> OS 2.0 主题组件下载与 <strong>English / Deutsch / 日本語</strong> 多语种导出已全部免费开放！如需离线工具合集或独立站人工代部署，欢迎通过下方通道对接：
         </p>
-        <ul style="margin:0 0 1rem;padding-left:1.2rem;color:#e2e8f0;font-size:0.9rem;">
-          <li>完整 <strong>12 条高转化消虑 Q&amp;A</strong>（覆盖全部 6 大弃单阻力维度）</li>
-          <li>一键下载完整 <strong><code>sections/faq-geo.liquid</code></strong> OS 2.0 手风琴组件（含自动防错 JSON-LD）</li>
-          <li>欧美日独立站多语种一键切换导出：<strong>English (EN) / Deutsch (DE) / 日本語 (JP)</strong></li>
-          <li>不限店铺数量、不限 SKU 次数，100% 浏览器本地离线可用</li>
-        </ul>
-        <div style="display:flex;flex-wrap:wrap;gap:0.65rem;align-items:center;">
-          <button type="button" class="btn-primary" id="openCheckoutBtn" style="width:auto;padding:0.75rem 1.35rem;">
-            ⚡ 立即申领激活码（支持 ¥39 / $14.99 全站通票）
-          </button>
-          <span style="font-size:0.84rem;color:#94a3b8;">客服 QQ/微信同号：<strong style="color:#5eead4;">3152557994</strong></span>
-        </div>
-      </div>
 
-      <div class="license-box">
-        <label for="licenseInput" style="display:block;font-weight:700;font-size:0.9rem;margin-bottom:0.5rem;">
-          🔑 输入 OPC1 激活码（本地 Ed25519 离线验签）
-        </label>
-        <input type="text" id="licenseInput" placeholder="OPC1.eyJ2IjoxLCJwIjoic2hvcGlmeS1mYXEtZ2VvIn0...（支持 p=&quot;*&quot; 全通码）" autocomplete="off" />
-        <button type="button" class="btn-primary" id="activateBtn">立即验证并解锁 Pro</button>
-        <div id="licenseStatus" class="status-msg" aria-live="polite"></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;">
+          <div class="license-box" style="margin:0;">
+            <strong style="display:block;font-size:1rem;color:#5eead4;margin-bottom:0.45rem;">1. 📥 离线百宝箱一键转存（网盘拉新通道）</strong>
+            <p style="margin:0 0 0.85rem;font-size:0.86rem;color:#cbd5e1;line-height:1.55;">
+              免费一键领取全站 18 款跨境与办公效率微工具离线合集、GEO 独立站体检模板库与 AI 防封手册。
+            </p>
+            <a href="https://a3152557994-ship-it.github.io/opc-tools/#vault-pack" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;width:auto;padding:0.55rem 1rem;text-decoration:none;font-size:0.86rem;">📦 免费领取全套离线百宝箱 →</a>
+          </div>
+
+          <div class="license-box" style="margin:0;border:1px solid #14b8a6;">
+            <strong style="display:block;font-size:1rem;color:#5eead4;margin-bottom:0.45rem;">2. 🏢 独立站代部署与定制（数创引擎工作室）</strong>
+            <p style="margin:0 0 0.85rem;font-size:0.86rem;color:#cbd5e1;line-height:1.55;">
+              承接 Shopify / WordPress 全站 GEO 结构化代部署（<code>llms.txt</code> + <code>JSON-LD</code> + <code>faq-geo.liquid</code> 主题集成）、小程序/苹果 App 与自动化脚本定做。
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <a href="mailto:3152557994@qq.com?cc=a3152557994@gmail.com&subject=%E3%80%90%E6%95%B0%E5%88%9B%E5%BC%95%E6%93%8E%E5%B7%A5%E4%BD%9C%E5%AE%A4%E3%80%91Shopify%20GEO%E4%BB%A3%E9%83%A8%E7%BD%B2%2F%E5%AE%9A%E5%88%B6%E5%92%A8%E8%AF%A2" class="btn-primary" style="width:auto;padding:0.5rem 0.9rem;text-decoration:none;font-size:0.84rem;">✉️ 3152557994@qq.com</a>
+              <button type="button" class="btn-secondary" id="copyQqNumBtn">复制微信/QQ 3152557994</button>
+            </div>
+          </div>
+
+          <div class="license-box" style="margin:0;">
+            <strong style="display:block;font-size:1rem;color:#5eead4;margin-bottom:0.45rem;">3. ☁️ 严选基础设施推荐 &amp; 开源赞赏</strong>
+            <p style="margin:0 0 0.85rem;font-size:0.86rem;color:#cbd5e1;line-height:1.55;">
+              跨境团队常用的固定住宅原生 ISP 网络测评、合规云算力赠金指引与 GitHub 开源仓库 Star 支持。
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <a href="https://a3152557994-ship-it.github.io/claude-guard/#guides" target="_blank" rel="noopener" class="btn-secondary" style="text-decoration:none;">☁️ 合规云与住宅网络</a>
+              <a href="https://github.com/a3152557994-ship-it/shopify-faq-geo" target="_blank" rel="noopener" class="btn-secondary" style="text-decoration:none;">⭐ GitHub Star</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer container">
     <p>
-      <strong>Shopify FAQ + GEO Injector</strong> · Zero-App-Fee Liquid Component &amp; AI Search Schema Builder ·
-      客服 QQ/微信：<code>3152557994</code> ·
+      <strong>Shopify FAQ + GEO Injector</strong> · 100% Free Liquid Component &amp; AI Search Schema Builder ·
+      数创引擎工作室 · 微信/QQ：<code>3152557994</code> · 官方邮箱：<a href="mailto:3152557994@qq.com" style="color:#0f766e;">3152557994@qq.com</a> ·
       <a href="./llms.txt" style="color:#0f766e;">llms.txt</a> ·
       <a href="https://a3152557994-ship-it.github.io/opc-tools/" target="_blank" rel="noopener" style="color:#0f766e;">OPC Hub</a> ·
       <a href="https://github.com/a3152557994-ship-it/shopify-faq-geo" target="_blank" rel="noopener" style="color:#0f766e;">GitHub</a>
     </p>
   </footer>
-
-  <!-- Unified Checkout & Instant Ed25519 Unlock Modal -->
-  <div class="checkout-backdrop" id="checkoutModal" hidden>
-    <div class="checkout-modal-card" role="dialog" aria-modal="true" aria-labelledby="checkoutModalTitle">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;">
-        <h3 id="checkoutModalTitle" style="margin:0;font-size:1.15rem;color:#0f172a;">统一收银台 · 申领或验签 OPC1. 激活码</h3>
-        <button type="button" class="btn-secondary" id="closeCheckoutModalBtn">✕ 关闭</button>
-      </div>
-
-      <div class="checkout-plan-grid">
-        <button type="button" class="checkout-plan-btn active" id="planAllAccessBtn" data-plan="all">
-          <strong>🔥 All-Access 全站 14 款通票 (p="*")</strong>
-          <span>¥39 / $14.99 一码通享全站（含本品 Pro）</span>
-        </button>
-        <button type="button" class="checkout-plan-btn" id="planSingleItemBtn" data-plan="single">
-          <strong>Shopify FAQ + GEO 单品买断</strong>
-          <span>$29 / ¥99 永久有效 (shopify-faq-geo)</span>
-        </button>
-      </div>
-
-      <div class="checkout-step">
-        <div class="checkout-step-title">① 一键复制订单口令（含商品、价格与专属单号）</div>
-        <pre class="checkout-cmd-box" id="orderCmdBox"></pre>
-        <button type="button" class="btn-primary" id="copyOrderCmdBtn" style="padding:0.68rem 1rem;font-size:0.9rem;">📋 一键复制订单口令</button>
-      </div>
-
-      <div class="checkout-step">
-        <div class="checkout-step-title">② 客服快速通道（粘贴发送上方口令，秒发 OPC1. 激活码）</div>
-        <div style="font-size:0.86rem;color:#0f172a;margin-bottom:8px;">
-          客服 QQ / 微信同号：<strong style="color:#0f766e;font-size:0.95rem;">3152557994</strong> ｜ 邮箱：<code>3152557994@qq.com</code>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          <button type="button" class="btn-secondary" id="copyQqNumBtn">复制客服号 3152557994</button>
-          <button type="button" class="btn-secondary" id="copyQqMailBtn">复制 QQ 邮箱</button>
-          <button type="button" class="btn-secondary" id="copyGmailBtn">复制 Gmail</button>
-          <a class="btn-secondary" id="fallbackMailtoLink" href="mailto:3152557994@qq.com?cc=a3152557994@gmail.com&subject=%5BShopify%20FAQ-GEO%5D%20Order" style="text-decoration:none;">✉️ 备用：邮件客户端</a>
-        </div>
-      </div>
-
-      <div class="checkout-step" style="margin-bottom:0;">
-        <div class="checkout-step-title">③ 已购 OPC1. 激活码？当场本地 Ed25519 验签秒解锁</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
-          <input type="text" id="modalLicenseInput" class="checkout-token-input" placeholder="粘贴 OPC1.xxxx.yyyy 激活码（支持本品或 p=&quot;*&quot; 全通码）" autocomplete="off" />
-          <button type="button" class="btn-primary" id="modalActivateBtn" style="width:auto;padding:0.6rem 1.1rem;font-size:0.88rem;">🔑 当场验签解锁</button>
-        </div>
-        <div id="modalLicenseStatus" class="status-msg" aria-live="polite" style="color:#475569;"></div>
-      </div>
-    </div>
-  </div>
 
   <script type="module" src="./app.js"></script>
 </body>

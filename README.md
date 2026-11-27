@@ -1,44 +1,25 @@
 # Shopify FAQ + GEO Injector (`shopify-faq-geo`)
 
-**Turn 1–3★ buyer complaints & pre-sale hesitation into high-converting Shopify product FAQs, `FAQPage` JSON-LD Schema, and OS 2.0 `.liquid` sections — with zero monthly app fees.**
+**100% Free & Open Source: Turn 1–3★ buyer complaints & pre-sale hesitation into 12 high-converting Shopify product FAQs (EN/DE/JP), `FAQPage` JSON-LD Schema, and OS 2.0 `.liquid` sections — with zero monthly app fees and zero activation keys.**
 
 - **Live Web App**: [https://a3152557994-ship-it.github.io/shopify-faq-geo/](https://a3152557994-ship-it.github.io/shopify-faq-geo/)
+- **OPC Free Hub (18 Tools)**: [https://a3152557994-ship-it.github.io/opc-tools/](https://a3152557994-ship-it.github.io/opc-tools/)
 - **AI Index (`llms.txt`)**: [https://a3152557994-ship-it.github.io/shopify-faq-geo/llms.txt](https://a3152557994-ship-it.github.io/shopify-faq-geo/llms.txt)
 
-## Why Merchants Use It
+## Why Merchants Use It (100% Free Unlocked)
 
 1. **6-Axis Purchase Friction Radar**: Drop in raw Amazon/AliExpress/Judge.me/Loox review CSVs or plain text. Instantly clusters buyer objections across **Sizing & Compatibility, Shipping & Packaging, Battery & Durability, Returns & Warranty, Material & Safety, and Setup & Usability**.
-2. **Objection-Busting Native Copy (EN / DE / JP)**: Synthesizes your exact warranty, dispatch speed, and material specs into natural D2C reassurance Q&As.
+2. **Objection-Busting Native Copy (EN / DE / JP)**: Synthesizes your exact warranty, dispatch speed, and material specs into 12 natural D2C reassurance Q&As.
 3. **Zero-Error `FAQPage` JSON-LD for Google & ChatGPT Shopping**: Structured `https://schema.org/FAQPage` output engineered so AI shopping assistants quote accurate shipping, sizing, and warranty policies.
-4. **Drop-In `sections/faq-geo.liquid`**: Paste directly into Shopify Online Store 2.0 (`sections/faq-geo.liquid`) — zero theme bloat, zero `$9.99/mo` recurring app bills.
+4. **Drop-In `sections/faq-geo.liquid`**: Download and paste directly into Shopify Online Store 2.0 (`sections/faq-geo.liquid`) — zero theme bloat, zero `$9.99/mo` recurring app bills.
 
-## Local CLI / ESM Usage
+## Done-For-You Store Deployment & Custom Software (数创引擎工作室)
 
-```js
-import { PRESET_SAMPLES, generateFaqPack } from "./src/engine.mjs";
-
-const sample = PRESET_SAMPLES["anc-earbuds"];
-const pack = generateFaqPack({
-  productName: sample.productName,
-  sellingPoints: sample.sellingPoints,
-  reviewsInput: sample.reviewsCsv,
-  productUrl: sample.productUrl,
-  locale: "en",
-  isPro: true,
-});
-
-console.log(pack.rankedCategories[0]); // Top purchase friction cluster
-console.log(pack.jsonLd.jsonLdScriptTag); // Valid Schema.org FAQPage JSON-LD
-```
+- Need hands-off `theme.liquid` / OS 2.0 deployment, custom Shopify integrations, WeChat/Alipay/Douyin mini-programs, or native Apple Apps?
+- Contact **数创引擎工作室**: `3152557994@qq.com` / `a3152557994@gmail.com` (WeChat/QQ: `3152557994`).
 
 ## Run Tests
 
 ```bash
 npm test
 ```
-
-## Pro Buyout (`$29 / ¥99`)
-
-- Free tier includes real-time 6-axis friction radar + top 3 FAQs + live accordion preview.
-- One-time Pro activation (`$29 USD / ¥99 CNY`, offline WebCrypto Ed25519 `OPC1.` license) unlocks all 12 high-converting Q&As, full `sections/faq-geo.liquid` download, and multi-market `EN / DE / JP` export.
-- Order & support: `3152557994@qq.com` / `a3152557994@gmail.com`.
